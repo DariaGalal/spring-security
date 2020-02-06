@@ -16,13 +16,13 @@ try {
 				sh "git clean -dfx"
 				try {
 					withEnv(["JAVA_HOME=${ tool 'jdk8' }"]) {
-						sh "./gradlew test  --refresh-dependencies --no-daemon --stacktrace"
+						//sh "./gradlew test  --refresh-dependencies --no-daemon --stacktrace"
 					}
 				} catch(Exception e) {
 					currentBuild.result = 'FAILED: check'
 					throw e
 				} finally {
-					junit '**/build/test-results/*/*.xml'
+					//junit '**/build/test-results/*/*.xml'
 				}
 			}
 		}
@@ -55,7 +55,7 @@ try {
 					sh "git clean -dfx"
 					withCredentials([file(credentialsId: 'docs.spring.io-jenkins_private_ssh_key', variable: 'DEPLOY_SSH_KEY')]) {
 						withEnv(["JAVA_HOME=${ tool 'jdk8' }"]) {
-							sh "./gradlew deployDocs -PdeployDocsSshKeyPath=$DEPLOY_SSH_KEY -PdeployDocsSshUsername=$SPRING_DOCS_USERNAME --refresh-dependencies --no-daemon --stacktrace"
+							//sh "./gradlew deployDocs -PdeployDocsSshKeyPath=$DEPLOY_SSH_KEY -PdeployDocsSshUsername=$SPRING_DOCS_USERNAME --refresh-dependencies --no-daemon --stacktrace"
 						}
 					}
 				}
@@ -68,7 +68,7 @@ try {
 					sh "git clean -dfx"
 					withCredentials([file(credentialsId: 'docs.spring.io-jenkins_private_ssh_key', variable: 'DEPLOY_SSH_KEY')]) {
 						withEnv(["JAVA_HOME=${ tool 'jdk8' }"]) {
-							sh "./gradlew deploySchema -PdeployDocsSshKeyPath=$DEPLOY_SSH_KEY -PdeployDocsSshUsername=$SPRING_DOCS_USERNAME --refresh-dependencies --no-daemon --stacktrace"
+							//sh "./gradlew deploySchema -PdeployDocsSshKeyPath=$DEPLOY_SSH_KEY -PdeployDocsSshUsername=$SPRING_DOCS_USERNAME --refresh-dependencies --no-daemon --stacktrace"
 						}
 					}
 				}
